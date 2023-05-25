@@ -1,3 +1,3 @@
-###Github page to showcase my Open Source Projects
+### Github page to showcase my Open Source Projects
 
 [tshenolo.github.com](https://tshenolo.github.com)
