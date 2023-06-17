@@ -20,7 +20,13 @@ git clone https://github.com/tshenolo/tshenolo.github.com.git
 cd tshenolo.github.com
 ```
 
-3. Run a simple, zero-configuration command-line HTTP server powered by the http-server package 
+3. Customize it using vscode
+```bash
+code .
+```
+
+
+4. Run a simple, zero-configuration command-line HTTP server powered by the http-server package 
 ```bash
 npx http-server
 ```
