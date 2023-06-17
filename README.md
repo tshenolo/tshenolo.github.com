@@ -1,6 +1,6 @@
 # My Open Source Projects
 
-This repository hosts the open source projects that I have created or contributed to. You can view the live version of the site [here](https://tshenolo.github.com).
+This repository hosts the open source projects that I have created or contributed to. You can view the live version of the site [here](https://tshenolo.github.io).
 
 ![Website Screenshot](img/github_showcase_screely.png)
 
