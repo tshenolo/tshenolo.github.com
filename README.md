@@ -44,6 +44,10 @@ Distributed under the [MIT](LICENSE) License.
 - 🐦 Follow me on twitter [twitter](https://twitter.com/tshenolo)
 - 📺 Subscribe to my [Youtube channel](https://www.youtube.com/@tshenolo?sub_confirmation=1)
 
+### Built with:
+![Bootstrap](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white)
+![jQuery](https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white)
+
 
 
 
