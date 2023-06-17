@@ -68,7 +68,7 @@ let username = "tshenolo";
 let per_page = 100;
 
 // Get Bio data via API
-fetch('https://api.github.com/users/${username}')
+fetch(`https://api.github.com/users/${username}`)
     .then(response => response.json())
     .then(data => {
       //console.log(data.html_url);
@@ -92,7 +92,7 @@ fetch('https://api.github.com/users/${username}')
 
 
   // Get Repository data via API
-  fetch('https://api.github.com/users/${username}/repos?per_page=100')
+  fetch(`https://api.github.com/users/${username}/repos?per_page=100`)
       .then(response => response.json())
       .then(data => {
         data.reverse().forEach(repo => {
