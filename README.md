@@ -39,6 +39,10 @@ Contributions to this repository are always welcome. Whether it's enhancing the 
 ## License
 Distributed under the [MIT](LICENSE) License.
 
+## Thank you for the Support
+- ⭐ Give this repo a ⭐ star ⭐ at the top of the page
+- 🐦 Follow me on twitter [twitter](https://twitter.com/tshenolo)
+- 📺 Subscribe to my [Youtube channel](https://www.youtube.com/@tshenolo?sub_confirmation=1)
 
 
 

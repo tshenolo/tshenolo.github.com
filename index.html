@@ -3,8 +3,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
+    <!-- CUSTOMIZE HEAD start -->
     <meta name="author" content="@tshenolo">
     <title>@tshenolo</title>
+    <!-- CUSTOMIZE HEAD end -->
     <link href="css/all.min.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
@@ -13,15 +15,17 @@
   
 <main>
   <div class="px-4 py-5 my-5 text-center">
-    <img class="d-block mx-auto mb-4 rounded-circle" id="my_avatar_url" src="https://avatars.githubusercontent.com/u/824557?v=4" alt="" width="100" height="100">
-    <h1 class="display-5 fw-bold text-body-emphasis" id="my_name">Tshenolo Mos</h1>
+    <img class="d-block mx-auto mb-4 rounded-circle" id="my_avatar_url" src="" alt="Profile Picture.." width="100" height="100">
+    <h1 class="display-5 fw-bold text-body-emphasis" id="my_name">Loading..</h1>
     <div class="col-lg-6 mx-auto">
-      <p class="lead mb-4" id="my_bio">Integration Software Developer</p>
+      <p class="lead mb-4" id="my_bio">Loading..</p>
       <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">  
+        <!-- CUSTOMIZE SOCIAL LINKS start -->
         <a href="https://tshenolo.me"><i class="fa-solid fa-house fa-2x"></i></a>  
         <a href="https://github.com/tshenolo"><i class="fa-brands fa-github fa-2x"></i></a>
         <a href="https://twitter.com/tshenolo"><i class="fa-brands fa-twitter fa-2x"></i></a>
         <a href="https://youtube.com/@tshenolo?sub_confirmation=1"><i class="fa-brands fa-youtube fa-2x"></i></a>
+        <!-- CUSTOMIZE SOCIAL LINKS end -->
       </div>
     </div>
   </div>
@@ -57,7 +61,13 @@
 <script src="js/bootstrap.min.js"></script>
 <script>
 
-fetch('https://api.github.com/users/tshenolo')
+// CUSTOMIZE USERNAME start
+let username = "tshenolo";  
+// CUSTOMIZE USERNAME end
+let per_page = 100;
+
+// Get Bio data via API
+fetch('https://api.github.com/users/${username}')
     .then(response => response.json())
     .then(data => {
       //console.log(data.html_url);
@@ -80,21 +90,21 @@ fetch('https://api.github.com/users/tshenolo')
     });
 
 
-
-fetch('https://api.github.com/users/tshenolo/repos?per_page=100')
-    .then(response => response.json())
-    .then(data => {
-      data.reverse().forEach(repo => {
-        console.log(repo.html_url);
-        //if(!repo.fork){
-            htmlStr = "<div class=\"col-4 mb-4\"><h4><a target='_blank' href='"+repo.html_url+"'>"+repo.name+"</a></h4><p>"+repo.description+"</p><p></p></div>";
-            $('#repositories').append(htmlStr);
-        //}            
+  // Get Repository data via API
+  fetch('https://api.github.com/users/${username}/repos?per_page=100')
+      .then(response => response.json())
+      .then(data => {
+        data.reverse().forEach(repo => {
+          //console.log(repo.html_url);
+          //if(!repo.fork){
+              htmlStr = "<div class=\"col-4 mb-4\"><h4><a target='_blank' href='"+repo.html_url+"'>"+repo.name+"</a></h4><p>"+repo.description+"</p><p></p></div>";
+              $('#repositories').append(htmlStr);
+          //}            
+        });
+      })
+      .catch(error => {
+        console.log('Error:', error);
       });
-    })
-    .catch(error => {
-      console.log('Error:', error);
-    });
 
 
 
