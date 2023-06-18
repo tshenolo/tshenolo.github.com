@@ -2,7 +2,7 @@
 
 This repository hosts the open source projects that I have created or contributed to. You can view the live version of the site [here](https://tshenolo.github.io).
 
-![Website Screenshot](img/github_showcase_screely.png)
+![Website Screenshot](img/github_showcase_tshenolo.png)
 
 ## Usage
 
@@ -25,6 +25,10 @@ cd tshenolo.github.com
 code .
 ```
 
+👉🏻 NOTE: Change username in the javascript to load your own profile and repositories
+
+![Website Screenshot](img/github_showcase_mojombo.png)
+
 
 4. Run a simple, zero-configuration command-line HTTP server powered by the http-server package 
 ```bash
@@ -32,6 +36,15 @@ npx http-server
 ```
 
 4. Open your web browser and visit http://localhost:8080.
+
+## TODO
+- [x] Make index.html customizable  
+- [x] Add screenshot  
+- [x] Store data using indexedDB  
+- [x] Create function to clear local data  
+- [x] Add dar mode CSS 
+- [ ] Add more features  
+
 
 ## Contributing
 Contributions to this repository are always welcome. Whether it's enhancing the user interface, improving the code, or reporting issues, your help is appreciated!

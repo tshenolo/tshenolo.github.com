@@ -10,13 +10,16 @@
     <link href="css/all.min.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
+    <style>
+      .dark-mode {background-color: black;color: white; color: white !important;}
+    </style>
   </head>
   <body>
   
 <main>
   <div class="px-4 py-5 my-5 text-center">
     <img class="d-block mx-auto mb-4 rounded-circle" id="my_avatar_url" src="" alt="Profile Picture.." width="100" height="100">
-    <h1 class="display-5 fw-bold text-body-emphasis" id="my_name">Loading..</h1>
+    <h1 class="display-5 fw-bold text-body-emphasis heading" id="my_name">Loading..</h1>
     <div class="col-lg-6 mx-auto">
       <p class="lead mb-4" id="my_bio">Loading..</p>
       <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">  
@@ -61,12 +64,18 @@
 <script src="js/jquery-3.6.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
     <script>
+        let darkmode = false;
         let username = "tshenolo";  
         let per_page = 100;
-
         let db;
-
         let openRequest = indexedDB.open(username, 1);
+
+        if(darkmode){
+          $('body').addClass('dark-mode');
+          $('.fa-brands').addClass('dark-mode');
+          $('.fa-solid').addClass('dark-mode');
+          $('.heading').addClass('dark-mode');
+        }
 
         openRequest.onupgradeneeded = function() {
             db = openRequest.result;
@@ -147,8 +156,12 @@
         // Function to display repositories
         function displayRepos(data) {
             data.reverse().forEach(repo => {
-                let htmlStr = "<div class=\"col-4 mb-4\"><h4><a target='_blank' href='"+repo.html_url+"'>"+repo.name+"</a></h4><p>"+repo.description+"</p><p></p></div>";
-                $('#repositories').append(htmlStr);        
+                let html_url = repo.html_url;
+                let name = repo.name;
+                let description = repo.description !== null ? repo.description : "";
+                let htmlStr = "<div class=\"col-4 mb-4\"><h4><a target='_blank' class='reponame' href='"+html_url+"'>"+name+"</a></h4><p>"+description+"</p><p></p></div>";
+                $('#repositories').append(htmlStr);   
+                if(darkmode){$("a.reponame").addClass('dark-mode');}     
             });
         }
         
