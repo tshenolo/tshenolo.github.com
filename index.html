@@ -60,55 +60,102 @@
 
 <script src="js/jquery-3.6.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
-<script>
+    <script>
+        let username = "tshenolo";  
+        let per_page = 100;
 
-// CUSTOMIZE USERNAME start
-let username = "tshenolo";  
-// CUSTOMIZE USERNAME end
-let per_page = 100;
+        let db;
 
-// Get Bio data via API
-fetch(`https://api.github.com/users/${username}`)
-    .then(response => response.json())
-    .then(data => {
-      //console.log(data.html_url);
-      avatar_url = data.avatar_url;
-      html_url = data.html_url;
-      name = data.name; 
-      blog = data.blog;
-      bio = data.bio;
-      twitter_username = data.twitter_username;
-      public_repos = data.public_repos;
-      public_gists = data.public_gists;
+        let openRequest = indexedDB.open(username, 1);
 
-      $("#my_avatar_url").attr('src', avatar_url);
-      $("#my_name").html(name);
-      $("#my_bio").html(bio);
+        openRequest.onupgradeneeded = function() {
+            db = openRequest.result;
+            if (!db.objectStoreNames.contains('user')) { 
+                db.createObjectStore('user');
+            }
+            if (!db.objectStoreNames.contains('repos')) { 
+                db.createObjectStore('repos');
+            }
+        };
 
-    })
-    .catch(error => {
-      console.log('Error:', error);
-    });
+        openRequest.onerror = function() {
+            console.error("Error", openRequest.error);
+        };
 
+        openRequest.onsuccess = function() {
+            db = openRequest.result;
 
-  // Get Repository data via API
-  fetch(`https://api.github.com/users/${username}/repos?per_page=100`)
-      .then(response => response.json())
-      .then(data => {
-        data.reverse().forEach(repo => {
-          //console.log(repo.html_url);
-          //if(!repo.fork){
-              htmlStr = "<div class=\"col-4 mb-4\"><h4><a target='_blank' href='"+repo.html_url+"'>"+repo.name+"</a></h4><p>"+repo.description+"</p><p></p></div>";
-              $('#repositories').append(htmlStr);
-          //}            
-        });
-      })
-      .catch(error => {
-        console.log('Error:', error);
-      });
+            let transaction = db.transaction("user");
+            let user = transaction.objectStore("user");
 
+            user.get(username).onsuccess = function(event) {
+                if (event.target.result) {
+                    displayData(event.target.result);
+                } else {
+                    fetch(`https://api.github.com/users/${username}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            let transaction = db.transaction("user", "readwrite");
+                            let user = transaction.objectStore("user");
+                            user.put(data, username);
+                            displayData(data);
+                        })
+                        .catch(error => {
+                            console.log('Error:', error);
+                        });
+                }
+            };
 
+            let reposTransaction = db.transaction("repos");
+            let repos = reposTransaction.objectStore("repos");
 
-</script>
+            repos.get(username).onsuccess = function(event) {
+                if (event.target.result) {
+                    displayRepos(event.target.result);
+                } else {
+                    fetch(`https://api.github.com/users/${username}/repos?per_page=100`)
+                        .then(response => response.json())
+                        .then(data => {
+                            let transaction = db.transaction("repos", "readwrite");
+                            let repos = transaction.objectStore("repos");
+                            repos.put(data, username);
+                            displayRepos(data);
+                        })
+                        .catch(error => {
+                            console.log('Error:', error);
+                        });
+                }
+            };
+        };
+        
+        // Function to display data
+        function displayData(data) {
+            avatar_url = data.avatar_url;
+            html_url = data.html_url;
+            name = data.name; 
+            blog = data.blog;
+            bio = data.bio;
+            twitter_username = data.twitter_username;
+            public_repos = data.public_repos;
+            public_gists = data.public_gists;
 
-</body></html>
+            $("#my_avatar_url").attr('src', avatar_url);
+            $("#my_name").html(name);
+            $("#my_bio").html(bio);
+        }
+
+        // Function to display repositories
+        function displayRepos(data) {
+            data.reverse().forEach(repo => {
+                let htmlStr = "<div class=\"col-4 mb-4\"><h4><a target='_blank' href='"+repo.html_url+"'>"+repo.name+"</a></h4><p>"+repo.description+"</p><p></p></div>";
+                $('#repositories').append(htmlStr);        
+            });
+        }
+        
+        function clearDB() {
+            indexedDB.deleteDatabase(username);
+        }
+
+    </script>
+</body>
+</html>
