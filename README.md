@@ -44,7 +44,7 @@ npx http-server
 - [x] Create function to clear local data  
 - [x] Add dark mode CSS 
 - [ ] Add download repo icon
-- [ ] Add icons under each repo
+- [ ] Add more icons under each repo
 - [ ] Add more features  
 
 
