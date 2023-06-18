@@ -42,7 +42,9 @@ npx http-server
 - [x] Add screenshot  
 - [x] Store data using indexedDB  
 - [x] Create function to clear local data  
-- [x] Add dar mode CSS 
+- [x] Add dark mode CSS 
+- [ ] Add download repo icon
+- [ ] Add icons under each repo
 - [ ] Add more features  
 
 
