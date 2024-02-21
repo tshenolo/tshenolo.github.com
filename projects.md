@@ -88,14 +88,14 @@ Highridge English Medium Primary School is a private school offering excellent e
 - Task: Design and development
 - Year: 2018
 
-![project1](projects/tshenolo2020.png)
+![project1](projects/highridgeschool.png)
 
 ### NALCGPMWU
 National Amalgamated local and Cetral Government, Parastatal Workers Union. The goal of the website/application is to automate a manual process of tracking information using spreadsheet. The application tracks all relevant information and allow employees of the union to manage information about the union
 - Task: Design and development
 - Year: 2018
 
-![project1](projects/tshenolo2020.png)
+![project1](projects/nalcgpmwu.png)
 
 ### Personal Website
 Personal Website for displaying some of my work.
@@ -103,7 +103,7 @@ Personal Website for displaying some of my work.
 - Year: 2017
 - URL: http://tshenolo.me/
 
-![project1](projects/tshenolo2020.png)
+![project1](projects/tshenolo2017.png)
 
 ### Black Eagle Loans
 Black Eagle Loans is a Botswana based micro-lending company which offers short term and long term loans to clients.
