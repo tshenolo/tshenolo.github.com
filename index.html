@@ -12,6 +12,28 @@
     <link href="css/main.css" rel="stylesheet">
     <style>
       .dark-mode {background-color: black;color: white; color: white !important;}
+      .repo-card {
+        border: 1px solid #ddd;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .repo-card:hover {
+        box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+      }
+      .repo-card .card-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: auto;
+        font-size: 0.9em;
+        color: #666;
+      }
     </style>
   </head>
   <body>
@@ -159,7 +181,21 @@
                 let html_url = repo.html_url;
                 let name = repo.name;
                 let description = repo.description !== null ? repo.description : "";
-                let htmlStr = "<div class=\"col-4 mb-4\"><h4><a target='_blank' class='reponame' href='"+html_url+"'>"+name+"</a></h4><p>"+description+"</p><p></p></div>";
+                let language = repo.language !== null ? `<span>${repo.language}</span>` : "";
+                let license = repo.license && repo.license.name ? `<span><i class='fa-solid fa-scale-balanced'></i> ${repo.license.name}</span>` : "";
+                let updated_at = repo.updated_at ? `<span>Updated ${new Date(repo.updated_at).toLocaleDateString()}</span>` : "";
+                
+                let htmlStr = `<div class="col-4 mb-4">
+                                <div class="repo-card">
+                                  <h4><a target='_blank' class='reponame' href='${html_url}'>${name}</a></h4>
+                                  <p>${description}</p>
+                                  <div class="card-footer">
+                                    <div>${language}</div>
+                                    <div>${license}</div>
+                                    <div>${updated_at}</div>
+                                  </div>
+                                </div>
+                              </div>`;
                 $('#repositories').append(htmlStr);   
                 if(darkmode){$("a.reponame").addClass('dark-mode');}     
             });
